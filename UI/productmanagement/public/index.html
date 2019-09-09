@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"/>
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <title>Product Management</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+      // The URL constructor is available in all browsers that support SW.
+        navigator.serviceWorker.register('./Offline.js')
+        .then(function(registration){
+          console.log("service worker : registered")
+        });
+        navigator.serviceWorker.ready.then(registration => {
+          console.log("service worker : ready")
+    
+        })
+      
+      }
+      </script>
+  </body>
+</html>

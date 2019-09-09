@@ -28,6 +28,8 @@ namespace ProductManagement
             
             DependencyResolver.SetResolver(new DependencyResolverHandler(container));
             GlobalConfiguration.Configuration.DependencyResolver = new DependencyResolverHandler(container);
+           
         }
+        
     }
 }

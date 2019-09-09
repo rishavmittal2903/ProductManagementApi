@@ -1,8 +1,5 @@
 ﻿using ProductManagement.Interfaces;
 using ProductManagement.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Http;
 
 namespace ProductManagement

@@ -1,0 +1,15 @@
+export const Registration="USER_REGISTRATION";
+export const Login="USER_LOGIN";
+export const AddUser="ADD_USER";
+export const DeleteUser="DELETE_USER";
+export const UpdateUser="UPDATE_USER";
+export const GetAllusers="GET_ALL_USERS";
+export const AddProduct="ADD_PRODUCT";
+export const DeleteProduct="DELETE_PRODUCT";
+export const UpdateProduct="UPDATE_PRODUCT";
+export const GetAllProducts="GET_ALL_PRODUCTS";
+export const ForgotPassword="USER_FORGOTPASSWORD";
+export const POST="POST";
+export const GET="GET";
+export const PUT="PUT";
+export const stateUpdate="UPDATE_STATE";
