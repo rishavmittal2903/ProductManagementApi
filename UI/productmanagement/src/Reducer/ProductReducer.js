@@ -4,7 +4,8 @@ const productState=[{
     productId:"",
     productName:"",
     productPrice:"",
-    createdBy:""
+    createdBy:"",
+    products:[]
 }]
 const productReducer=(state=productState,action)=>{
     switch(action.type)
@@ -19,7 +20,10 @@ const productReducer=(state=productState,action)=>{
             
         }
         case GetAllProducts:{
-            
+            state={
+                ...state,
+                products:[...state.products,action.payload]
+            }
         }
     }
     return state;

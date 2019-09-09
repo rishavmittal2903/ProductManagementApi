@@ -107,11 +107,20 @@ const mapStateToProps=(state)=>{
 }
 
 const mapDispatchToProps=(dispatch)=>{
+    var that=this;
     return {
         RegisterData:(data)=>{
             UserService.UserRegistration(data).then(function(response){
 console.log(JSON.stringify(response));
-this.props.history.push("/SignIn");
+if(sessionStorage.getItem("LoginFlag"))
+{
+    that.props.history.goBack();
+}
+else
+{
+    this.props.history.push("/SignIn");
+
+}
             }).catch(function(error){
 console.log(error);
             })

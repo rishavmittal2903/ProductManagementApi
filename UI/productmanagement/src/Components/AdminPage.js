@@ -1,17 +1,22 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import signinimg from '../Images/signup-image.jpg';
-import{updateState} from '../Actions/UserActions';
 import UserService from "../Services/UserService";
-import Registration from "../Components/Registration";
-import ForgotPass from "../Components/ForgotPassword";
+import ProductService from "../Services/ProductServices";
+import{Get_All_Users,Login_Account} from '../Actions/UserActions';
+import {Get_All_Products} from "../Actions/ProductActions";
+
 class AdminPage extends React.Component
 {
     constructor()
     {
         super();
-        this.emailRef=React.createRef();
-        this.passRef=React.createRef();
+    }
+    componentWillMount()
+    {
+    if(sessionStorage.getItem("LoginFlag"))
+   {
+    this.props.history.push("/SignIn");
+   }
     }
     render()
     {
@@ -21,28 +26,11 @@ class AdminPage extends React.Component
             <div className="container">
                 <div className="signup-content boxShdw">
                     <div className="signup-img brdrrght">
-                        <img src={signinimg} className="pdnglft20" alt="background image"/>
-                    </div>
-                    <div className="signup-form">
-                        <div className="register-form" id="register-form">
-                            <h2>Sign In</h2>
-                            <div className="form-group">
-                                <label for="email">Email ID :</label>
-                                <input type="email" name="email" ref={that.emailRef} id="emailId" onChange={()=>that.props.changeState(that.emailRef)} />
-                            </div>
-                            <div className="form-group">
-                                <label for="password">Password :</label>
-                                <input type="password" name="password" ref={that.passRef} id="password" onChange={()=>that.props.changeState(that.passRef)}/>
-                            </div>
-                            <div className="form-group hght20">
-                               <span className="txtFont fltlft" onClick={()=>that.props.updateFlag("forgotFlag")}>Forgot password?</span>
-                               <span className="txtFont fltrght" onClick={()=>that.props.updateFlag("registerFlag")}>New Registration</span>
-
-                            </div>
-                            <div className="form-submit">
-                                <input type="button" value="Sign In" className="submit" name="signin" id="signin" onClick={()=>that.props.LoginData(that.props.user)} />
-                            </div>
-                        </div>
+                      <ul>
+                          <li onClick={()=>that.props.loadAllUsers("")}>GetUsers</li>
+                          <li onClick={()=>that.props.getallProducts("")}>GetProducts</li>
+                          <li onClick={()=>that.props.history.push("/Registration")}>AddUsers</li>
+                    </ul>
                     </div>
                 </div>
             </div>
@@ -61,17 +49,34 @@ const mapStateToProps=(state)=>{
 }
 
 const mapDispatchToProps=(dispatch)=>{
+    var that=this;
     return {
-        LoginData:(data)=>{
-            UserService.UserLogin(data).then(function(response){
-console.log(JSON.stringify(response));
-            }).catch(function(error){
+       loadAllUsers:(data)=>{ 
+        UserService.GetAllUsers({}).then(function(response){
+if(response!=null&&response!=undefined)
+{
+dispatch(Get_All_Users(JSON.parse(response)));
+sessionStorage.setItem("LoginFlag",true);
+that.props.history.push("/Users");  
+} 
+}).catch(function(error){
 console.log(error);
-            })
-        },
-        changeState:(data)=>{
-            dispatch(updateState(data));
-        }
+        })
+        
+    },
+    getallProducts:(data)=>{ 
+        ProductService.Gell_All_products({}).then(function(response){
+if(response!=null&&response!=undefined)
+{
+dispatch(Get_All_Products(JSON.parse(response)));
+sessionStorage.setItem("LoginFlag",true);
+that.props.history.push("/Products");  
+} 
+}).catch(function(error){
+console.log(error);
+        })
+        
     }
+}
 }
 export default connect(mapStateToProps,mapDispatchToProps)(AdminPage);

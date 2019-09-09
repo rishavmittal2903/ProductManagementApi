@@ -6,6 +6,8 @@ import AdminPage from "./Components/AdminPage";
 import SignIn from "./Components/SignIn";
 import Registration from "./Components/Registration";
 import ForgotPassword from "./Components/ForgotPassword";
+import Users from "./Components/users";
+import Products from "./Components/Products";
 import createHistory from 'history/createBrowserHistory';
 import { Router, Route, Switch } from 'react-router';
 import store from "./Store/Store";
@@ -19,6 +21,8 @@ ReactDOM.render(
          <Route path="/ForgotPassword" component={ForgotPassword} />
          <Route path="/SignIn" component={SignIn} />
          <Route path="/Admin" component={AdminPage} />
+         <Route path="/Users" component={Users} />
+         <Route path="/Products" component={Products} />
          <Route path="/*" component={() => 'NOT FOUND'} />
       </Switch>
    </Router>

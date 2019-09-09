@@ -64,6 +64,15 @@ const mapDispatchToProps=(dispatch)=>{
 if(response!=null&&response!=undefined)
 {
 dispatch(Login_Account(JSON.parse(response)));
+sessionStorage.setItem("LoginFlag",true);
+if(response.userType==0)
+{
+    this.props.history.push("/AdminPage");
+}
+else
+{
+    this.props.history.push("/Users");  
+}
 } 
 }).catch(function(error){
 console.log(error);

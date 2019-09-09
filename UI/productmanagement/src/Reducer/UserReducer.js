@@ -7,7 +7,8 @@ const userState={
     mobileNumber:"",
     gender:"",
     password:"",
-    userType:0
+    userType:0,
+    users:[]
 }
 const userReducer=(state=userState,action)=>{
     switch(action.type)
@@ -30,24 +31,11 @@ const userReducer=(state=userState,action)=>{
             }
             break;
         }
-        case AddUser:{
-            
-            break;
-        }
-        case DeleteUser:{
-            
-            break;
-        }
-        case UpdateUser:{
-            
-            break;
-        }
-        case ForgotPassword:{
-            
-            break;
-        }
         case GetAllusers:{
-            
+            state={
+                ...state,
+                users:[...state.users,action.payload]
+            }
             break;
         }
         case stateUpdate:{
