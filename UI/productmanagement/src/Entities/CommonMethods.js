@@ -33,12 +33,14 @@ function convertIntoUserObject(data)
     var promiseObject=new Promise(
         function(resolve,reject)
         {
+            var headers = {'Authorization': convertIntoBase64(values)}
+
             $.ajax({
                 type: methodType,
                 url:url,
-                dataType: "json",
+                dataType: "jsonp",
                 beforeSend: function (xhr){ 
-                    xhr.setRequestHeader('Authorization', convertIntoBase64(values)); 
+                    xhr.setRequestHeader(headers);
                 },
                 success: function (msg) {
                   resolve(successfunc(msg));

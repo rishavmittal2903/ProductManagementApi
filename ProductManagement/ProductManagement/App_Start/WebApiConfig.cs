@@ -14,6 +14,7 @@ namespace ProductManagement
             config.MapHttpAttributeRoutes();
             config.MessageHandlers.Add(new BuildRequestAndResponse());
             config.Filters.Add(new CustomExceptionHandler());
+            config.EnableCors();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
